@@ -7,13 +7,17 @@
 // in each iteration loop over the iteration amount and add a '#' to a stored string
 // print the string
 
-for (i = 0; i < 7; i++) {
-    let hashString = '';
-    for (h = 0; h <= i; h++) {
-        hashString += '#';
+let triangleLoop = () => {
+    for (i = 0; i < 7; i++) {
+        let hashString = '';
+        for (h = 0; h <= i; h++) {
+            hashString += '#';
+        }
+        console.log(hashString);
     }
-    console.log(hashString);
 }
+triangleLoop();
+
 
 // Book Answer
 // for (let line = "#"; line.length < 8; line += "#")
@@ -39,17 +43,20 @@ for (i = 0; i < 7; i++) {
 // If it is, print "Buzz"
 // Otherwise, print the number
 
-for (let i = 0; i <= 100; i++) {
-    if (i % 3 === 0 && i % 5 === 0) {
-        console.log('FizzBuzz');
-    } else if (i % 3 === 0) {
-        console.log('Fizz');
-    } else if (i % 5 === 0) {
-        console.log('Buzz');
-    } else {
-        console.log(i);
+let fizzBuzz = () => {
+    for (let i = 0; i <= 100; i++) {
+        if (i % 3 === 0 && i % 5 === 0) {
+            console.log('FizzBuzz');
+        } else if (i % 3 === 0) {
+            console.log('Fizz');
+        } else if (i % 5 === 0) {
+            console.log('Buzz');
+        } else {
+            console.log(i);
+        }
     }
 }
+fizzBuzz();
 
 
 // Book Answer
@@ -59,3 +66,51 @@ for (let i = 0; i <= 100; i++) {
 //     if (n % 5 == 0) output += "Buzz";
 //     console.log(output || n);
 // }
+
+
+
+// Chessboard
+
+// Pass a number to a function that outputs a grid of that size using newline 
+// characters to separate lines
+// On each line print alternating spaces and "#" to create a chessboard
+
+// My Answer
+
+// Create a function that takes in a number
+// Iterate up to the number that was passed in
+// On each iteration if it's an odd row (use modulo) start with a space
+// On each iteration if it's an even row (use modulo) start with a "#"
+// Create a string followed by a new line
+
+
+let chessboard = (number) => {
+    for (row = 0; row < number; row++) {
+        let hash = '';
+        let entry = (row % 2 === 0) ? ' #' : '# ';
+
+        for (let col = 0; col < number; col++) {
+            hash += entry;
+        }
+        console.log(hash);
+    }
+}
+chessboard(5);
+
+
+// Book Answer
+// let size = 8;
+// let board = "";
+
+// for (let y = 0; y < size; y++) {
+//   for (let x = 0; x < size; x++) {
+//     if ((x + y) % 2 == 0) {
+//       board += " ";
+//     } else {
+//       board += "#";
+//     }
+//   }
+//   board += "\n";
+// }
+
+// console.log(board);
