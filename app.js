@@ -114,3 +114,96 @@ chessboard(5);
 // }
 
 // console.log(board);
+
+
+
+// Minimum
+
+// Write a function min that takes two arguments and returns thir minimum
+
+// My Answer
+const min = (a, b) => {
+    return (a < b) ? a : b;
+}
+
+console.log('min: ', min(2, 22));
+
+// Book Answer
+// function min(a, b) {
+//     if (a < b) return a;
+//     else return b;
+// }
+
+
+
+// Recursion
+
+// Define a recursive function isEven
+// 0 is even
+// 1 is odd
+// Any other number N, it's evenness is the same as N - 2
+// Accept a single parameter (positive whole number)
+// Return a boolean
+
+// My Answer
+const isEven = (Num) => {
+    if (Num === 0) {
+        return true;
+    } else if (Num === 1) {
+        return false;
+    } else {
+        return (Num < 0) ? isEven(Num + 2) : isEven(Num - 2);
+    }
+}
+
+console.log('isEven: ', isEven(0));
+
+// Book Answer
+// function isEven(n) {
+//     if (n == 0) return true;
+//     else if (n == 1) return false;
+//     else if (n < 0) return isEven(-n);
+//     else return isEven(n - 2);
+// }
+
+
+
+// Bean Counting
+
+// Write a function countBs
+// Takes a string as it's only argument
+// Returns a number indicating how many uppercase B's there are in the string
+
+// Write a function countChar that behaves like countB
+// Takes a second argument that indicates the character to be counted instead of only counting B's
+// Rewrite countB's to make use of this new function
+
+// My Answer
+const countChars = (string, char) => {
+    let count = 0;
+    for (let i = 0; i < string.length; i++) {
+        if (string[i] === char) count++;
+    }
+    return count;
+}
+
+const countBs = (string) => {
+    return countChars(string, "B")
+}
+
+console.log('countChars: ', countBs('Beach Volley Ball'));
+
+// Book Answer
+// function countChar(string, ch) {
+//     let counted = 0;
+//     for (let i = 0; i < string.length; i++) {
+//         if (string[i] == ch) {
+//             counted += 1;
+//         }
+//     }
+//     return counted;
+// }
+
+// function countBs(string) {
+//     return countChar(string, "B");
+// }
