@@ -207,3 +207,159 @@ console.log('countChars: ', countBs('Beach Volley Ball'));
 // function countBs(string) {
 //     return countChar(string, "B");
 // }
+
+
+
+// The Sum of a Range
+
+// Write a range function that takes 2 arguments, start and end
+// Return an array containing all the numbers from start up to and including end
+
+// Write a sum function that takes an array of numbers and returns the sum of these numbers
+// run sum(range(1, 10)) to see if it returns 55
+
+// Modify range function to take step as a 3rd argument
+// If no step given elements go up by increments of 1
+// Otherwise the elements should increment by the step amount
+// Should also work with negative steps
+
+// My Answer
+const range = (start, end, step = start < end ? 1 : -1) => {
+    let rangeArr = [];
+
+    if (step > 0) {
+        for (let i = start; i <= end; i += step) {
+            rangeArr.push(i);
+        }
+    } else {
+        for (let i = start; i >= end; i += step) {
+            rangeArr.push(i);
+        }
+    }
+    return rangeArr;
+}
+
+console.log('range: ', range(5, 2, -1));
+
+const sum = (array) => {
+    let total = 0;
+    for (i = 0; i < array.length; i++) {
+        total += array[i];
+    }
+    return total;
+}
+
+console.log('sum: ', sum(range(1, 10)));
+
+// Book Answer
+// function range(start, end, step = start < end ? 1 : -1) {
+//     let array = [];
+
+//     if (step > 0) {
+//       for (let i = start; i <= end; i += step) array.push(i);
+//     } else {
+//       for (let i = start; i >= end; i += step) array.push(i);
+//     }
+//     return array;
+//   }
+
+//   function sum(array) {
+//     let total = 0;
+//     for (let value of array) {
+//       total += value;
+//     }
+//     return total;
+//   }
+
+
+
+// Reversing an Array
+
+// Write two functions, reverseArray and reverseArrayInPlace
+// reverseArray takes an array as an arg and produces a new array that has the same elements in inverse order
+// reverseArrayInPlace does the same, but modifies the original array
+// Can't use standard reverse method
+
+// My Answer
+const reverseArray = (array) => {
+    let reversedArray = [];
+
+    for (i = array.length; i > 0; i--) {
+        reversedArray.push(i);
+    }
+
+    return reversedArray;
+}
+
+console.log('reverseArray', reverseArray([1, 2, 3, 4, 5]));
+
+const reverseArrayInPlace = (array) => {
+    // only iterate over the first half of the array
+    for (let i = 0; i < Math.floor(array.length / 2); i++) {
+        // save the current value
+        let currentValue = array[i];
+        // swap the current value with the value at the end of the array that mirrors it
+        array[i] = array[array.length - 1 - i];
+        array[array.length - 1 - i] = currentValue;
+    }
+    return array;
+}
+
+console.log('reversedArrayInPlace: ', reverseArrayInPlace([1, 2, 3, 4, 5]));
+
+// Book Answer
+// function reverseArray(array) {
+//     let output = [];
+//     for (let i = array.length - 1; i >= 0; i--) {
+//         output.push(array[i]);
+//     }
+//     return output;
+// }
+
+// function reverseArrayInPlace(array) {
+//     for (let i = 0; i < Math.floor(array.length / 2); i++) {
+//         let old = array[i];
+//         array[i] = array[array.length - 1 - i];
+//         array[array.length - 1 - i] = old;
+//     }
+//     return array;
+// }
+
+
+
+// A List
+
+// Need to revisit this one...
+
+// Book Answer
+// const arrayToList = (array) => {
+//     let list = null;
+//     for (let i = array.length - 1; i >= 0; i--) {
+//         list = { value: array[i], rest: list };
+//     }
+//     return list;
+// }
+
+// console.log('arrayToList: ', arrayToList([5, 6, 7]));
+
+// const listToArray = (list) => {
+//     let array = [];
+
+//     for (let node = list; node; node = node.rest) {
+//         array.push(node.value);
+//     }
+
+//     return array;
+// }
+
+// const prepend = (value, list) => {
+//     return { value, rest: list };
+// }
+
+// const nth = (list, n) => {
+//     if (!list) return undefined;
+//     else if (n == 0) return list.value;
+//     else return nth(list.rest, n - 1);
+// }
+
+// console.log('listToArray: ', listToArray(arrayToList([5, 6, 7])));
