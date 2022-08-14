@@ -363,3 +363,185 @@ console.log('reversedArrayInPlace: ', reverseArrayInPlace([1, 2, 3, 4, 5]));
 // }
 
 // console.log('listToArray: ', listToArray(arrayToList([5, 6, 7])));
+
+
+
+// Deep Comparison
+
+// Write a function deepEqual that takes 2 values and returns true only if they are the same value
+// or are objects with the same propertees. The values of the properties must be equal when compared with a 
+// recursive call to deepEqual.
+
+// My Answer
+const deepEqual = (val1, val2) => {
+    if (val1 && val2 && typeof val1 === 'object' && typeof val2 === 'object') {
+        for (key in val1) {
+            if (!deepEqual(val1[key], val2[key])) {
+                return false;
+            }
+        }
+        return true;
+    }
+    return val1 === val2;
+}
+
+const val1 = { animal: 'cat', color: 'brown', eyeColor: 'green' };
+const val2 = { animal: 'cat', color: 'brown', eyeColor: 'green' };
+
+// const val1 = null;
+// const val2 = { animal: 'cat', color: 'brown', eyeColor: 'green' };
+
+// const val1 = 2;
+// const val2 = 2;
+
+console.log('Deep Equal', deepEqual(val1, val2));
+
+// Book Answer
+
+// function deepEqual(a, b) {
+//     if (a === b) return true;
+
+//     if (a == null || typeof a != "object" ||
+//         b == null || typeof b != "object") return false;
+
+//     let keysA = Object.keys(a), keysB = Object.keys(b);
+
+//     if (keysA.length != keysB.length) return false;
+
+//     for (let key of keysA) {
+//       if (!keysB.includes(key) || !deepEqual(a[key], b[key])) return false;
+//     }
+
+//     return true;
+//   }
+
+//   let obj = {here: {is: "an"}, object: 2};
+//   console.log(deepEqual(obj, obj));
+//   // → true
+//   console.log(deepEqual(obj, {here: 1, object: 2}));
+//   // → false
+//   console.log(deepEqual(obj, {here: {is: "an"}, object: 2}));
+//   // → true
+
+
+
+// Flattening
+
+// Use the reduce method in combination with the concat method to "flatten" an array of arrays 
+// into a single array that has all the elements of the original arrays.
+
+// My Answer
+const flatten = (array) => {
+    return array.reduce((prev, curr) => prev.concat(curr), []);
+};
+
+myArray = [
+    ['a', 'b', 'c'],
+    ['d', 'e', 'f', 'g'],
+    ['h', 'i']
+];
+
+console.log('Flatten: ', flatten(myArray));
+
+// Book Answer
+
+// let arrays = [[1, 2, 3], [4, 5], [6]];
+
+// console.log(arrays.reduce((flat, current) => flat.concat(current), []));
+// // → [1, 2, 3, 4, 5, 6]
+
+
+
+// Your Own Loop
+
+// Write a higher order function loop that provides something like a for loop stmt
+// Takes a value, test function, update function and a body function
+// Each iteration first runs the test function on the current loop value and stops if it returns false
+// Then it calls the body function giving it the current value
+// Finally it calls the update function to create a new value and start from the beginning
+// When defining the function you can use a regular loop to do the actual looping
+
+// My Answer
+
+const loop = (val, testFn, updateFn, bodyFn) => {
+    if (!testFn(val)) return false;
+
+    bodyFn(val);
+
+    let newVal = updateFn(val);
+    loop(newVal, testFn, updateFn, bodyFn);
+};
+
+console.log('Loop: ', loop(3, n => n > 0, n => n - 1, console.log));
+// → 3
+// → 2
+// → 1
+
+// Book Answer
+
+// function loop(start, test, update, body) {
+//     for (let value = start; test(value); value = update(value)) {
+//         body(value);
+//     }
+// }
+
+// loop(3, n => n > 0, n => n - 1, console.log);
+// // → 3
+// // → 2
+// // → 1
+
+
+
+// Everything
+
+// Implement every as a function that takes an array and a predicate function as parameters.
+// Write 2 versions, one using a loop and one using the some method.
+
+// My Answer
+const every = (array, test) => {
+    for (let i = 0; i < array.length; i++) {
+        if (!test(array[i])) return false;
+    }
+    return true;
+};
+
+const everySome = (array, test) => {
+    return !array.some(el => !test(el));
+}
+
+console.log('First Every: ', every([1, 3, 5], n => n < 10));
+// // → true
+console.log('Second Every: ', every([2, 4, 16], n => n < 10));
+// // // → false
+console.log('Third Every: ', every([], n => n < 10));
+// //   // → true
+
+console.log('First EverySome: ', everySome([1, 3, 5], n => n < 10));
+// → true
+console.log('Second EverySome: ', everySome([2, 4, 16], n => n < 10));
+// → false
+console.log('Third EverySome: ', everySome([], n => n < 10));
+// → true
+
+// Book Answer
+
+// function every(array, predicate) {
+//     for (let element of array) {
+//       if (!predicate(element)) return false;
+//     }
+//     return true;
+//   }
+  
+//   function every2(array, predicate) {
+//     return !array.some(element => !predicate(element));
+//   }
+  
+//   console.log(every([1, 3, 5], n => n < 10));
+//   // → true
+//   console.log(every([2, 4, 16], n => n < 10));
+//   // → false
+//   console.log(every([], n => n < 10));
+//   // → true
+
+
+
